@@ -1,6 +1,6 @@
 import requests
 import csv
-from keys import api_key as API_KEY
+from key import api_key as API_KEY
 
 
 def read_csv():
