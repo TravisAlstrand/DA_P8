@@ -25,20 +25,21 @@ def get_movie_data(row):
 def clean_for_csv(movies):
   data_for_csv = []
   for movie in movies:
+    print(movie)
     movie_list = []
     runtime = int(''.join(i for i in movie["Runtime"] if i.isdigit()))
     awards = movie["Awards"].split(". ")
     wins_and_losses = awards[1].split(" & ")
     wins = int(''.join(i for i in wins_and_losses[0] if i.isdigit()))
-    losses = int(''.join(i for i in wins_and_losses[1] if i.isdigit()))
+    nom_noms = int(''.join(i for i in wins_and_losses[1] if i.isdigit()))
     box_office = int(''.join(i for i in movie["BoxOffice"] if i.isdigit()))
-    movie_list.extend((movie["Title"], runtime, movie["Genre"], wins, losses, box_office))
+    movie_list.extend((movie["Title"], runtime, movie["Genre"], wins, nom_noms, box_office))
     data_for_csv.append(movie_list)
   create_csv(data_for_csv)
 
 
 def create_csv(movies):
-  header = ["title", "runtime", "genre", "award_wins", "award_losses", "box_office"]
+  header = ["title", "runtime", "genre", "award_wins", "award_nominations", "box_office"]
   with open("movies.csv", "w") as file:
     writer = csv.writer(file)
     writer.writerow(header)
