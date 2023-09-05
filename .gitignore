@@ -1,4 +1,4 @@
-key.py
+./key.py
 env/
 __pycache__
 .vscode
