@@ -34,13 +34,13 @@ def clean_for_csv(movies):
         nom_noms = int(''.join(i for i in wins_and_nomnoms[1] if i.isdigit()))
         box_office = int(''.join(i for i in movie["BoxOffice"] if i.isdigit()))
         movie_list.extend(
-            (movie["Title"], runtime, movie["Genre"], wins, nom_noms, box_office))
+            (movie["Title"], movie["Rated"], movie["Released"], movie["Director"], runtime, movie["Genre"], wins, nom_noms, box_office))
         data_for_csv.append(movie_list)
     create_csv(data_for_csv)
 
 
 def create_csv(movies):
-    header = ["title", "runtime", "genre",
+    header = ["title", "rated", "released", "director", "runtime", "genre",
               "award_wins", "award_nominations", "box_office"]
     with open("movies.csv", "w") as file:
         writer = csv.writer(file)
